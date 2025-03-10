@@ -22,11 +22,11 @@ def create_product(request):
     serializer = ProductSerializer(data=json.loads(dict(request.data).get('params')[0]))
     image = request.FILES['image']
 
-
-    upload_file('fittintest', str(uuid.uuid4()), image)
+    file_name = str(uuid.uuid4()) + os.path.splitext(image.name)[1]
+    upload_file('fittintest', file_name, image)
 
     if serializer.is_valid():
-        serializer.save()
+        serializer.save(image=file_name)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     print(serializer.errors)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -7,10 +7,11 @@ from .CategorySerializer import CategorySerializer
 
 class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    image = serializers.CharField(required=False, allow_null=True)
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'specifications', 'category']
+        fields = ['id', 'name', 'image', 'description', 'price', 'specifications', 'category']
 
     def create(self, validated_data):
 
