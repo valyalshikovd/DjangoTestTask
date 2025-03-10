@@ -9,12 +9,16 @@ from ..models.Product import Product
 from ..serializer.ProductSerializer import ProductSerializer
 from ..filters.ProductFilter import ProductFilter
 from ..service.object_storage_service import upload_file
+from .products_service import injectFilesToJson
 
 
 def get_products(request):
     products = Product.objects.all()
     product_filter = ProductFilter(request.GET, queryset=products)
     filtered_products = product_filter.qs
+    for product in filtered_products:
+        injectFilesToJson(product)
+
     serializer = ProductSerializer(filtered_products, many=True)
     return Response(serializer.data)
 
