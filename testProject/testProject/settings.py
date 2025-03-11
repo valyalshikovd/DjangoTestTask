@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'product_api_app',
     'userapp',
     'rest_framework_simplejwt',
+    'djoser',
+    'cartapp',
 ]
 
 MIDDLEWARE = [

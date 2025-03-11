@@ -1,12 +1,17 @@
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 
 from .views.ProductView import ProductListView
 from .views.ProductsView import ProductsView
 from .views.CategoryView import CategoryView
 
-urlpatterns = [
-    path('product/', ProductListView.as_view(), name='product-list'),
-    path('products/', ProductsView.as_view(), name='products'),
-    path('category/', CategoryView.as_view(), name='category')
-]
+
+router = DefaultRouter()
+router.register(r'product', ProductListView, basename='product-list')
+router.register(r'product/', ProductsView, basename='products'),
+router.register(r'category', CategoryView, basename='category')
+
+
+urlpatterns = router.urls
+

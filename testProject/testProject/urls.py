@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('product_api_app.urls')),
     path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
-    path('reg/', include('userapp.urls'))
+    path('reg/', include('userapp.urls')),
+    path('cart/', include('cartapp.urls'))
 ]
