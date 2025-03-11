@@ -1,6 +1,7 @@
 from rest_framework.permissions import IsAdminUser
 from rest_framework.views import APIView
 from .service import add_user
+from .service import mail_confirmation
 
 class RegisterView(APIView):
     def post(self, request):
@@ -12,3 +13,8 @@ class RegisterAdminView(APIView):
 
     def post(self, request):
         return add_user(request=request, permission="Admining")
+
+class MailConfirmation(APIView):
+
+    def post(self, request):
+        return mail_confirmation(request)

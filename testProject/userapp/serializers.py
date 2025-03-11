@@ -25,6 +25,8 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         permission = validated_data.pop('permission')
 
+        validated_data['is_active'] = False
+
         user = User.objects.create_user(**validated_data)
 
         user_group, created = Group.objects.get_or_create(name=permission)
