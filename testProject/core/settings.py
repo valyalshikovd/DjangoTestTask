@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
 from pathlib import Path
-
 from dotenv import load_dotenv
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +42,7 @@ INSTALLED_APPS = [
     'product_api_app',
     'userapp',
     'rest_framework_simplejwt',
+    'drf_yasg',
     'cartapp',
     'orderapp'
 ]
@@ -155,3 +154,6 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
+
+
+SWAGGER_PERMISSION = os.getenv("SWAGGER_PERMISSION")
