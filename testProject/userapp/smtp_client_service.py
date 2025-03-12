@@ -5,10 +5,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formatdate
 import random
-from django_redis import get_redis_connection
+
+from celery import shared_task
+#from core.celery_conf import app
 from .redis_service import add_cache
 
-def add_request_to_mail(email):
+
+@shared_task
+def send_verification_email(email):
     from_mail = os.getenv("SMTP_FROM_MAIL")
     from_passwd = os.getenv("SMTP_FROM_PASSWORD")
     server_adr = os.getenv("SMTP_SERVER_ADDR")

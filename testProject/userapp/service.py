@@ -5,7 +5,8 @@ from rest_framework import status
 from .serializers import RegisterSerializer
 from rest_framework.response import Response
 from .redis_service import get_cache
-from .smtp_client_service import add_request_to_mail
+from .smtp_client_service import send_verification_email
+
 
 def add_user(request, permission):
     data = request.data | {"permission": permission}
@@ -16,14 +17,13 @@ def add_user(request, permission):
         serializer.save()
 
         print(data)
-        add_request_to_mail(data['email'])
+        send_verification_email.delay(data['email'])
         return Response({"message": "Пользователь зарегистрирован"}, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 def mail_confirmation(request):
 
     email = request.data['email']
-
     code = get_cache(email)
     data = request.data['code']
     user = get_object_or_404(User, email=email)
