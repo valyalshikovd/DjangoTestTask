@@ -23,5 +23,4 @@ def create_order(cart):
             quantity=cart_item.quantity
         )
     cart.products.clear()
-
     return Response({'message': 'Order created' }, status=status.HTTP_201_CREATED)
