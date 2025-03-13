@@ -24,7 +24,7 @@
 - [x]  Django 
 - [x]  PostgreSql 
 - [ ] Pydantic 
-- [x]  Selery 
+- [x]  Celery 
 - [x]  Redis 
 - [ ] PyUnit 
 - Приветствуется использование других библиотек
