@@ -1,10 +1,5 @@
 import base64
-from io import BytesIO
-from django.core.files import File
-
-from django.http import request
 from rest_framework.response import Response
-
 from ..models.Product import Product
 from ..filters.ProductsFilter import ProductsFilter
 from ..serializer.ProductSerializer import ProductSerializer

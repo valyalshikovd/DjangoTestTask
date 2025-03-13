@@ -11,7 +11,6 @@ from ..filters.ProductFilter import ProductFilter
 from ..service.object_storage_service import upload_file
 from .products_service import injectFilesToJson
 
-
 def get_products(request):
     products = Product.objects.all()
     product_filter = ProductFilter(request.GET, queryset=products)

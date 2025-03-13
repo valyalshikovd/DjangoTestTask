@@ -1,13 +1,11 @@
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.decorators import action
-from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 
 from ..service.products_service import getProducts
 
 class ProductsView(ViewSet):
-
     @swagger_auto_schema(
         operation_description="Выбрать товары соответствующей категории",
         request_body=openapi.Schema(

@@ -9,7 +9,6 @@ from ..service.product_service import create_product
 from userapp import permissions
 from ..serializer.ProductSerializer import ProductSerializer
 
-
 class ProductListView(ViewSet):
 
     @swagger_auto_schema(

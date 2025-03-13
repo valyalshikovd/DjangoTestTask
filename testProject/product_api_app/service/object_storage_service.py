@@ -13,7 +13,6 @@ def upload_file(bucket, key, data):
     s3.upload_fileobj(data, bucket, key)
 
 
-
 def get_file(bucket, key):
     session = boto3.session.Session()
     s3 = session.client(
