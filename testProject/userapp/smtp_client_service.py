@@ -5,9 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.utils import formatdate
 import random
-
 from celery import shared_task
-#from core.celery_conf import app
 from .redis_service import add_cache
 
 
@@ -25,9 +23,7 @@ def send_verification_email(email):
     msg["Date"] = formatdate(localtime=True)
 
     code = random.randint(1000, 9999)
-
     msg.attach(MIMEText("У вас 5 минут. Код подтверждения: " + str(code), 'html', 'utf-8'))
-
     add_cache(email, code, 300)
 
     smtp = smtplib.SMTP(server_adr, 25)

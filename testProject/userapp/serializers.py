@@ -10,10 +10,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         fields = ('username', 'email', 'password', 'password2', 'permission')
         extra_kwargs = {'password': {'write_only': True}}
 
-
-
-
-
     def validate(self, data):
 
         if data['password'] != data['password2']:
@@ -22,14 +18,9 @@ class RegisterSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         validated_data.pop('password2')
-
         permission = validated_data.pop('permission')
-
         validated_data['is_active'] = False
-
         user = User.objects.create_user(**validated_data)
-
         user_group, created = Group.objects.get_or_create(name=permission)
         user.groups.add(user_group)
-
         return user
