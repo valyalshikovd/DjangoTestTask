@@ -6,5 +6,4 @@ from .views import CartView
 
 router = DefaultRouter()
 router.register('', CartView, basename='carts')
-
 urlpatterns = router.urls

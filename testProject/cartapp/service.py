@@ -28,7 +28,6 @@ def update(request):
         request.data.get('quantity', 1))
     product = get_object_or_404(Product, name=product_name)
     cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-
     cart_item.quantity += quantity
     cart_item.save()
     return Response({'message': 'Cart updated'})

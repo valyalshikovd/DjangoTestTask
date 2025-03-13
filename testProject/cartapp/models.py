@@ -1,6 +1,5 @@
 from django.contrib.auth.models import User
 from django.db import models
-
 from product_api_app.models.Product import Product
 
 class Cart(models.Model):
